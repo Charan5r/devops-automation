@@ -22,8 +22,7 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         script {
-            sh 'docker build -t javatechie/devops-integration .'
-            }
+            sh 'docker build -t charanrcs/devops-integration .'
         }
       }
     }

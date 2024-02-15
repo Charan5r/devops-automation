@@ -48,6 +48,7 @@ pipeline {
                     git config user.email "charansairatham@gmail.com"
                     git config user.name "Charan R"
                     BUILD_NUMBER=${BUILD_NUMBER}
+                    P_BUILD=$(($BUILD_NUMBER+1))
                     sed -i "s/35/${BUILD_NUMBER}/g" deploymentservice.yaml 
                     git add deploymentservice.yaml
                     

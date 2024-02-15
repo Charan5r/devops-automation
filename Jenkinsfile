@@ -26,6 +26,17 @@ pipeline {
         }
       }
     }
+    stage('Push image to Hub'){
+            steps{
+                script{
+                   withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+                   sh 'docker login -u charanrcs -p ${dockerhubpwd}'
+
+}
+                   sh 'docker push charanrcs/devops-integration'
+                }
+            }
+        }
     stage('Update Deployment File') {
         environment {
             GIT_REPO_NAME = "Jenkins-Zero-To-Hero"

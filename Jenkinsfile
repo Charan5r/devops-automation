@@ -39,7 +39,7 @@ pipeline {
         }
     stage('Update Deployment File') {
         environment {
-            GIT_REPO_NAME = "devops-automation"
+            GIT_REPO_NAME = "Update-manifests-files"
             GIT_USER_NAME = "charan5r"
         }
         steps {
@@ -48,9 +48,8 @@ pipeline {
                     git config user.email "charansairatham@gmail.com"
                     git config user.name "Charan R"
                     BUILD_NUMBER=${BUILD_NUMBER}
-                    PREV_BUILD_NUMBER=${BUILD_NUMBER}-1
-                    sed -i "s/22/${BUILD_NUMBER}/g" deploymentservice.yaml
-                    git add deploymentservice.yaml
+                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" spring/deployment.yml
+                    git add spring/deployment.yml
                     
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main

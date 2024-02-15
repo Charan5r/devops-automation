@@ -22,7 +22,7 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         script {
-            sh 'docker build -t charanrcs/iamcharan/devops-integration:${BUILD_NUMBER} .'
+            sh 'docker build -t charanrcs/iamcharan/devops-integration:latest .'
         }
       }
     }
@@ -33,7 +33,7 @@ pipeline {
                    sh 'docker login -u charanrcs -p ARuna!@118'
 
 }
-                   sh 'docker push charanrcs/devops-integration:${BUILD_NUMBER}'
+                   sh 'docker push charanrcs/devops-integration:latest'
                 }
             }
         }
@@ -47,11 +47,9 @@ pipeline {
                 sh '''
                     git config user.email "charansairatham@gmail.com"
                     git config user.name "Charan R"
-                    BUILD_NUMBER=${BUILD_NUMBER}
-                    prev=${BUILD_NUMBER}-1
-                    sed -i "s/3/${BUILD_NUMBER}/g" deploymentservice.yaml 
+                    sed -i "s/devops-integration:latest/devops-integration:latest/g" deploymentservice.yaml 
                     git add deploymentservice.yaml
-                    git commit -m "Update deployment image to version ${BUILD_NUMBER}"
+                    git commit -m "Update deployment image"
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                 '''
             }

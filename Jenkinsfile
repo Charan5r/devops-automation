@@ -19,17 +19,10 @@ pipeline {
         sh 'mvn clean package'
       }
     }
-    stage('Build and Push Docker Image') {
-      environment {
-        DOCKER_IMAGE = "charanrcs/devops-integration:${BUILD_NUMBER}"
-        REGISTRY_CREDENTIALS = credentials('docker-cred')
-      }
+    stage('Build Docker Image') {
       steps {
         script {
-            sh 'sudo docker build -t ${DOCKER_IMAGE} .'
-            def dockerImage = docker.image("${DOCKER_IMAGE}")
-            docker.withRegistry('https://index.docker.io/v1/', "docker-cred") {
-                dockerImage.push()
+            sh 'docker build -t javatechie/devops-integration .'
             }
         }
       }

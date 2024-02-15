@@ -22,7 +22,7 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         script {
-            sh 'docker build -t charanrcs/devops-integration .'
+            sh 'docker build -t charanrcs/devops-integration:${BUILD_NUMBER} .'
         }
       }
     }
@@ -33,7 +33,7 @@ pipeline {
                    sh 'docker login -u charanrcs -p ARuna!@118'
 
 }
-                   sh 'docker push charanrcs/devops-integration'
+                   sh 'docker push charanrcs/devops-integration:${BUILD_NUMBER}'
                 }
             }
         }

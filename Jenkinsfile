@@ -49,7 +49,7 @@ pipeline {
                     git config user.name "Charan R"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     PREV_BUILD_NUMBER=${BUILD_NUMBER}-1
-                    sed -i "s/${PREV_BUILD_NUMBER}/${BUILD_NUMBER}/g" deploymentservice.yaml
+                    sed -i "s/22/${BUILD_NUMBER}/g" deploymentservice.yaml
                     git add deploymentservice.yaml
                     
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"

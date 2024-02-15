@@ -48,7 +48,8 @@ pipeline {
                     git config user.email "charansairatham@gmail.com"
                     git config user.name "Charan R"
                     BUILD_NUMBER=${BUILD_NUMBER}
-                    sed -i "s/27/${BUILD_NUMBER}/g" deploymentservice.yaml 
+                    PREV_BUILD_NUM=${BUILD_NUMBER-1}
+                    sed -i "s/${PREV_BUILD_NUM}/${BUILD_NUMBER}/g" deploymentservice.yaml 
                     git add deploymentservice.yaml
                     
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"

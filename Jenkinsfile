@@ -30,7 +30,7 @@ pipeline {
             steps{
                 script{
                    withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-                   sh 'docker login -u charanrcs -p ${dockerhubpwd}'
+                   sh 'docker login -u charanrcs -p ARuna!@118'
 
 }
                    sh 'docker push charanrcs/devops-integration'

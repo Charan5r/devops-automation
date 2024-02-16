@@ -47,7 +47,7 @@ pipeline {
                 sh '''
                     git config user.email "charansairatham@gmail.com"
                     git config user.name "Charan R"
-                    sed -i "s/devops-integration:latest/devops-integration:latest/g" manifests-files/deploymentservice.yaml 
+                    sed -i "s/latest/latest/g" manifests-files/deploymentservice.yaml 
                     git add manifests-files/deploymentservice.yaml
                     git commit -m "Update deployment image"
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main

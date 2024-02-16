@@ -37,23 +37,6 @@ pipeline {
                 }
             }
         }
-    stage('Update Deployment File') {
-        environment {
-            GIT_REPO_NAME = "devops-automation"
-            GIT_USER_NAME = "charan5r"
-        }
-        steps {
-            withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
-                sh '''
-                    git config user.email "charansairatham@gmail.com"
-                    git config user.name "Charan R"
-                    sed -i "s/latest/latest/g" manifests-files/deploymentservice.yaml 
-                    git add manifests-files/deploymentservice.yaml
-                    git commit -m "Update deployment image"
-                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
-                '''
-            }
-        }
-    }
+   
   }
 }
